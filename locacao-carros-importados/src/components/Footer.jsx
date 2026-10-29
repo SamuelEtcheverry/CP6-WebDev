@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer>
-      <p>Prime Imports</p>
+    <footer className="bg-slate-900 py-6 text-center text-sm text-slate-300">
+      <p>Prime Imports - Locacao de Carros Importados</p>
     </footer>
   );
 }
