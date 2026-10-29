@@ -20,18 +20,26 @@ function Carros() {
     marca === "Todas" ? carros : carros.filter((c) => c.marca === marca);
 
   return (
-    <section>
-      <h2>Nossos Carros</h2>
-      <select value={marca} onChange={(e) => setMarca(e.target.value)}>
-        {marcas.map((m) => (
-          <option key={m} value={m}>
-            {m}
-          </option>
+    <section className="mx-auto max-w-6xl px-6 py-12">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="text-3xl font-bold text-slate-900">Nossos Carros</h2>
+        <select
+          value={marca}
+          onChange={(e) => setMarca(e.target.value)}
+          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-700"
+        >
+          {marcas.map((m) => (
+            <option key={m} value={m}>
+              {m}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {filtrados.map((carro) => (
+          <Card key={carro.id} {...carro} />
         ))}
-      </select>
-      {filtrados.map((carro) => (
-        <Card key={carro.id} {...carro} />
-      ))}
+      </div>
     </section>
   );
 }
