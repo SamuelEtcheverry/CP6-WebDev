@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "../components/Card";
 
 const carros = [
@@ -12,10 +13,23 @@ const carros = [
 ];
 
 function Carros() {
+  const [marca, setMarca] = useState("Todas");
+
+  const marcas = ["Todas", ...new Set(carros.map((c) => c.marca))];
+  const filtrados =
+    marca === "Todas" ? carros : carros.filter((c) => c.marca === marca);
+
   return (
     <section>
       <h2>Nossos Carros</h2>
-      {carros.map((carro) => (
+      <select value={marca} onChange={(e) => setMarca(e.target.value)}>
+        {marcas.map((m) => (
+          <option key={m} value={m}>
+            {m}
+          </option>
+        ))}
+      </select>
+      {filtrados.map((carro) => (
         <Card key={carro.id} {...carro} />
       ))}
     </section>
